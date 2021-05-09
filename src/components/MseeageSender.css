@@ -1,0 +1,10 @@
+.ButtonOption {
+	border: none;
+	background: var(--twitter-color) !important;
+	color: white !important;
+	font-weight: 900 !important;
+	cursor: pointer !important;
+	border-radius: 30px !important;
+	height: 50px !important;
+	text-transform: inherit !important;
+}
