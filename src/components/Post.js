@@ -1,6 +1,8 @@
 import { Avatar } from '@material-ui/core';
 import React, { useState, forwardRef } from 'react';
 import styled,{css} from 'styled-components/macro';
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
 
 const Divcontainer = styled.div`
   display:flex;
@@ -57,14 +59,19 @@ const Post = forwardRef(({ profilePic, username, price, images, timestamp, phon 
       </TopContainer>
       
       <BottomContainer>
-        
+        <Fade top>
         <p>Prix:<span>{price}</span>CFA</p>
-        <p>Numero de portable:<span>{ phon}</span></p>
-        <p>{ message}</p>
+          <p>Numero de portable:<span>{phon}</span></p>
+        </Fade>
+        <Fade left>
+          <p>{message}</p>
+        </Fade>
       </BottomContainer>
+      <Zoom left cascade>
       <Images>
         <img src={images} alt=""/>
-      </Images>
+        </Images>
+      </Zoom>
     </Divcontainer>
   )
 })
