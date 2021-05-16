@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import BusinessIcon from '@material-ui/icons/Business';
 import HomeIcon from '@material-ui/icons/Home';
 import styled from 'styled-components/macro';
@@ -6,6 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import {Avatar} from '@material-ui/core'
 import ChatIcon from '@material-ui/icons/Chat';
 import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone';
+import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -32,6 +33,7 @@ const NavBars = styled(FaBars)`
   height:100%;
   right:2rem;
   font-size:40;
+  cursor:pointer;
   @media screen and (max-width:768px){
     display:block;
     height:100%;
@@ -83,8 +85,6 @@ const Search = styled.input`
 const HomLogo = styled(HomeIcon)`
   color:gray;
   height:40px;
-  ${'' /* margin-right:30px; */}
-  ${'' /* margin:0px  20px; */}
 `
 const Logo = styled(BusinessIcon)`
   display:flex;
@@ -163,10 +163,47 @@ const NavItems = styled.div`
     display:none;
   }
 `
+const BurgerMenu = styled.div`
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    display:flex;
+    flex-direction:column;
+    padding:30px;
+    jusify-content:flex-start;
+    background:white;
+    width:250px;
+    transform:${props=> props.show ? 'translateX(0)':'translateX(100%)'};
+    transition:transform 0.2s;
+    li{
+      list-style:none;
+      margin:30px 0;
+      padding:30px 0;
+      border-bottom: 1px solid #C0C0C0;
+      box-shadow:0px 5px 7px -7px rgba(0,0,0,0.75);
+    }
+    a{
+      text-decoration:none;
+      color:black;
+      font-size:15px;
+      text-transform:uppercase;
+      
+    }
+`
+const CustomCloseIcon = styled.div`
+    display:flex;
+    justify-content:flex-end;
+    cursor:pointer;
+  
+`
+
+
 
 
 const Header = () => {
   const [{ user }, dispatch] = useStateValue();
+  const [openStatus,setOpenStatus] = useState(false)
   return (
     <>
       <Nav>
@@ -208,7 +245,15 @@ const Header = () => {
             <h5>{user.displayName}</h5>
           </ConContainer>
         </HeaderInfo>
-        <NavBars style={{ fontSize: 40}} />
+        <NavBars style={{ fontSize: 40 }} onClick={()=>setOpenStatus(true)}/>
+        <BurgerMenu show={openStatus}>
+          <CustomCloseIcon onClick={()=>setOpenStatus(false)}>
+            <CloseIcon/>
+          </CustomCloseIcon>
+          <li><a href="#">Acceuil</a></li>
+          <li><a href="#">Deposer une annoce</a></li>
+          <li><a href="#">Loyer & Acheter</a></li>
+        </BurgerMenu>
         </Nav>
     </>
   )

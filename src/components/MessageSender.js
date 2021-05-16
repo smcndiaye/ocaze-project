@@ -134,8 +134,8 @@ const  handleSubmit = (e) => {
     // reset value
     setDesc('')
     setPrix('')
-    setPhon('')
-    
+  setPhon('')
+  
 
 };
 
@@ -149,13 +149,13 @@ return (
       <TopContainer>
         <Avatar src={user.photoURL}/>
         
-        <Description required value={desc}    
+        <Description  value={desc}    
           placeholder='Description'
             onChange={(e) => setDesc(e.target.value)} />
         <Prix required type='number' placeholder='Prix' value={prix}
           
             onChange={(e) => setPrix(e.target.value)} />
-          <Protable required type='number' placeholder='Numero de telephone'
+          <Protable  type='number' placeholder='Numero de telephone'
             value={phon}
           onChange={(e) => setPhon(e.target.value)} 
         />
@@ -168,7 +168,7 @@ return (
         <label htmlFor="upload-photo" style={{display:'flex',alignItems:'center',cursor:'pointer'}}>
 
         <input
-          required
+          
             type="file"  style={{ display: 'none', cursor: 'pointer' }}
               id='upload-photo'
           name="upload-photo"
@@ -184,7 +184,7 @@ return (
         <BottomOption>
           <Button
             variant='outlined'
-            onClick={handleSubmit} className='ButtonOption'>POSTER</Button>
+            onClick={handleSubmit} disabled={!prix} className='ButtonOption'>POSTER</Button>
     
         </BottomOption>
       </BottomContainer>
