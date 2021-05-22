@@ -7,7 +7,8 @@ import {Avatar} from '@material-ui/core'
 import ChatIcon from '@material-ui/icons/Chat';
 import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
-import { Link } from 'react-router-dom';
+import { Link as LinkR } from 'react-router-dom';
+import { Link as LinkS ,animateScroll as scroll} from 'react-scroll';
 import { FaBars } from 'react-icons/fa';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useStateValue } from './StatePrivider';
@@ -48,7 +49,7 @@ const AddAnnoce = styled(AddBoxTwoToneIcon)`
   cursor:pointer;
   background-color:#eff2f5;
 `
-const MLink = styled(Link)`
+const MLink = styled(LinkS)`
   display:flex;
   jusify-content:center;
   align-items:center;
@@ -59,8 +60,9 @@ const MLink = styled(Link)`
   margin-left:5px;
   text-decoration:none;
   color:#000;
+  cursor:pointer;
 `
-const Linkd = styled(Link)`
+const Linkd = styled(LinkS)`
   cursor:pointer;
   height:100%;
   ${'' /* width:100%; */}
@@ -92,6 +94,7 @@ const Logo = styled(BusinessIcon)`
   width:40px;
   color:gray;
   padding-right:40px;
+  cursor:pointer;
  
 `
 const Chat = styled(ChatIcon)`
@@ -203,29 +206,41 @@ const CustomCloseIcon = styled.div`
 
 const Header = () => {
   const [{ user }, dispatch] = useStateValue();
-  const [openStatus,setOpenStatus] = useState(false)
+  const [openStatus, setOpenStatus] = useState(false)
+  const toggleHome = () => {
+    scroll.scrollToTop();
+  }
   return (
     <>
       <Nav>
-       <Logo style={{ fontSize: 40}}/>
+        <Logo style={{ fontSize: 40 }} onClick={toggleHome}/>
         <SearchInfo>
           <SearchIcon />
           <Search  placeholder = 'Que recherchez-vous?'/>
         </SearchInfo>
         <NavItems>
           <HomeContainer>
-            <Linkd to='/'>
+            <Linkd to='/' onClick={toggleHome}>
               <HomLogo style={{ fontSize: 40 }} />
               </Linkd>
             <h5>Acceuil</h5>
         </HomeContainer>
         
-          <MLink to='/home'>
-            <AddAnnoce style={{ fontSize: 40 }} />
+          <MLink to='message' onClick={toggleHome}
+              spy={true}
+              smooth={true}
+              offset={50}
+              duration={500}
+          >
+            <AddAnnoce style={{ fontSize: 40}} />
             <h5>Déposer une annonce</h5> 
           </MLink>
           <BuyRent>
-            <Linkd to='/'>
+            <Linkd to='posts'
+              spy={true}
+              smooth={true}
+              offset={50}
+              duration={500}>
               <ShoppingCartIcon style={{ fontSize: 40, color: 'gray' }} />
               </Linkd>
             <h5>Acheter & Louer</h5>
@@ -250,9 +265,9 @@ const Header = () => {
           <CustomCloseIcon onClick={()=>setOpenStatus(false)}>
             <CloseIcon/>
           </CustomCloseIcon>
-          <li><a href="#">Acceuil</a></li>
-          <li><a href="#">Deposer une annoce</a></li>
-          <li><a href="#">Loyer & Acheter</a></li>
+          <li><a href="#" onClick={()=>setOpenStatus(false)}>Acceuil</a></li>
+          <li><a href="#" onClick={()=>setOpenStatus(false)}>Deposer une annoce</a></li>
+          <li><a href="#" onClick={()=>setOpenStatus(false)}>Loyer & Acheter</a></li>
         </BurgerMenu>
         </Nav>
     </>

@@ -143,10 +143,10 @@ const  handleSubmit = (e) => {
 const [{ user }, dispatch] = useStateValue();
 return (
     
-    <DivContainer>
+    <DivContainer id='message'>
          <form >
 
-      <TopContainer>
+      <TopContainer >
         <Avatar src={user.photoURL}/>
         
         <Description  value={desc}    

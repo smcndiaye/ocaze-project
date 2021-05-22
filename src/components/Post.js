@@ -49,7 +49,7 @@ img{
 `
 const Post = forwardRef(({ profilePic, username, price, images, timestamp, phon ,message},ref) => {
   return (
-    <Divcontainer ref={ref} >
+    <Divcontainer ref={ref} id='posts'>
       <TopContainer>
         <Avatar src={profilePic} css={`margin-right:15px`} />
         <TopContainerInfo>
