@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useStateValue } from './StatePrivider';
 import './MseeageSender.css'
-
 import db from '../firebase';
 import firebase from 'firebase';
 const storage = firebase.storage();
@@ -18,7 +17,6 @@ const IputStyle = css`
 `
 const DivContainer = styled.div`
    display:flex;
-  ${'' /* flex:1; */}
   flex-direction:column;
   margin-top:40px;
   background-color:white;
@@ -53,12 +51,6 @@ const BottomContainer = styled.div`
   display:flex;
   justify-content:space-evenly;
 `
-// const Form = styled.form`
-  
-//   flex:1;
-
-// `
-
 const Description = styled.input`
   ${IputStyle}
 `
@@ -72,7 +64,6 @@ const Protable = styled.input`
 const BottomOption = styled.div`
   padding:20px;
   display:flex;
-  
   align-items:center;
   color:gray;
   margin:5px;
@@ -80,11 +71,11 @@ const BottomOption = styled.div`
     font-size:medium;
     margin-left:10px;
   }
-  &:hover{
-    background-color:var(--bg-color);
+  ${'' /* &:hover{
+    ${'' /* background-color:var(--bg-color); */}
     border-radius:20px;
     cursor:pointer;
-  }
+  } */}
 `
 export const MessageSender = () => {
   const [desc, setDesc] = useState('')
@@ -132,8 +123,8 @@ const  handleSubmit = (e) => {
      
     
     // reset value
-    setDesc('')
-    setPrix('')
+  setDesc('')
+  setPrix('')
   setPhon('')
   
 
@@ -148,7 +139,6 @@ return (
 
       <TopContainer >
         <Avatar src={user.photoURL}/>
-        
         <Description  value={desc}    
           placeholder='Description'
             onChange={(e) => setDesc(e.target.value)} />
@@ -158,9 +148,7 @@ return (
           <Protable  type='number' placeholder='Numero de telephone'
             value={phon}
           onChange={(e) => setPhon(e.target.value)} 
-        />
-
-         
+        /> 
       </TopContainer>
       <BottomContainer>
         <BottomOption>
@@ -168,7 +156,7 @@ return (
         <label htmlFor="upload-photo" style={{display:'flex',alignItems:'center',cursor:'pointer'}}>
 
         <input
-          
+            value = {null}
             type="file"  style={{ display: 'none', cursor: 'pointer' }}
               id='upload-photo'
           name="upload-photo"
@@ -183,8 +171,17 @@ return (
         </BottomOption>
         <BottomOption>
           <Button
-            variant='outlined'
-            onClick={handleSubmit} disabled={!prix} className='ButtonOption'>POSTER</Button>
+            variant="contained"
+                      style={{
+                        borderRadius: 35,
+                        color:'white',
+                        backgroundColor: 'var(--twitter-color)',
+                        padding: "18px 36px",
+                        fontSize: "18px"
+              }}
+            disabled={!prix|!phon | !desc | !selecImgs}
+            onClick={handleSubmit}
+            className='ButtonOption'>POSTER</Button>
     
         </BottomOption>
       </BottomContainer>

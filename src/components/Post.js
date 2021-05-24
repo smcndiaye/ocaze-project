@@ -44,6 +44,8 @@ const Images = styled.div`
 img{
   width:100%;
   border-radius:15px;
+  height:418px;
+  object-fit:cover;
   
 }
 `
@@ -69,7 +71,7 @@ const Post = forwardRef(({ profilePic, username, price, images, timestamp, phon 
       </BottomContainer>
       <Zoom left cascade>
       <Images>
-        <img src={images} alt=""/>
+        <img src={images} alt="Image" />
         </Images>
       </Zoom>
     </Divcontainer>

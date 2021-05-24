@@ -12,7 +12,7 @@ import { Link as LinkS ,animateScroll as scroll} from 'react-scroll';
 import { FaBars } from 'react-icons/fa';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useStateValue } from './StatePrivider';
-
+import logo from './logo/logo.svg'
 const Nav = styled.nav`
   display:flex;
   justify-content:space-between;
@@ -88,7 +88,7 @@ const HomLogo = styled(HomeIcon)`
   color:gray;
   height:40px;
 `
-const Logo = styled(BusinessIcon)`
+const Logo = styled.img`
   display:flex;
   height:100%;
   width:40px;
@@ -213,7 +213,7 @@ const Header = () => {
   return (
     <>
       <Nav>
-        <Logo style={{ fontSize: 40 }} onClick={toggleHome}/>
+        <Logo src ={logo} style={{ fontSize: 40 }} onClick={toggleHome}/>
         <SearchInfo>
           <SearchIcon />
           <Search  placeholder = 'Que recherchez-vous?'/>
@@ -265,9 +265,9 @@ const Header = () => {
           <CustomCloseIcon onClick={()=>setOpenStatus(false)}>
             <CloseIcon/>
           </CustomCloseIcon>
-          <li><a href="#" onClick={()=>setOpenStatus(false)}>Acceuil</a></li>
-          <li><a href="#" onClick={()=>setOpenStatus(false)}>Deposer une annoce</a></li>
-          <li><a href="#" onClick={()=>setOpenStatus(false)}>Loyer & Acheter</a></li>
+          <li><a href="#" onClick={()=>setOpenStatus(false), toggleHome}>Acceuil</a></li>
+          <li><a href="#" onClick={()=>setOpenStatus(false) , toggleHome}>Deposer une annoce</a></li>
+          <li><a href="#" onClick={()=>setOpenStatus(false), toggleHome}>Loyer & Acheter</a></li>
         </BurgerMenu>
         </Nav>
     </>
